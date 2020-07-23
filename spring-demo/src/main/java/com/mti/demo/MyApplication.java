@@ -18,11 +18,6 @@ public class MyApplication {
 		Hello hello = (Hello) ac.getBean("hello");
 		hello.sayHello();
 
-		List<String> list = new ArrayList<>();
-		if (CollectionUtils.isEmpty(list)) {
-
-		}
-
 	}
 
 }
