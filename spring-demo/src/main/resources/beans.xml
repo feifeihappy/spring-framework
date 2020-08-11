@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--	<bean id="carFactoryBean" class="com.mti.demo.model.CarFactoryBean" p:carInfo="BMW,234,45000" />-->
+
+<!--	<bean id="car1" class="com.mti.demo.model.Car" p:maxSpeed="240" p:price="5600" p:brand="宝马" p:color="红色" />-->
+<!--	<bean id="car2" class="com.mti.demo.model.Car" p:color="银色" parent="car1"/>-->
+
+
+<bean id="car1" class="com.mti.demo.model.Car" p:maxSpeed="240" p:price="5600" p:brand="宝马" p:color="红色" />
+<!--<bean id="car2" class="com.msdn.bean.Car" p:color="银色" parent="car1"/>-->
+
+<bean id="persons" class="com.mti.demo.model.Persons" p:name="herish" depends-on="car1" />
+</beans>

@@ -328,9 +328,12 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 					"Detected cyclic loading of " + encodedResource + " - check your import definitions!");
 		}
 		try {
+			//将资源文件转换为类型为InputStream的I/O流
 			InputStream inputStream = encodedResource.getResource().getInputStream();
 			try {
+				//从InputStream中得到xML的解析源
 				InputSource inputSource = new InputSource(inputStream);
+				//编码如果不为null, 则设置inputSource的编码
 				if (encodedResource.getEncoding() != null) {
 					inputSource.setEncoding(encodedResource.getEncoding());
 				}

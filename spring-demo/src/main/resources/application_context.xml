@@ -1,0 +1,38 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="hello" class="com.mti.demo.Hello">
+	</bean>
+
+	<bean id="user" class="com.mti.demo.model.User">
+<!--		<property  name="name"  value="hresh"  />-->
+		<property name="name" value="${user.name}"/>
+	</bean>
+
+
+<!--	<bean id="userHandler" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+<!--		<property name="locations">-->
+<!--			<list>-->
+<!--				<value>classpath:application.properties</value>-->
+<!--			</list>-->
+<!--		</property>-->
+<!--	</bean>-->
+
+<!--	<bean id="myPost" class="com.mti.demo.MyBeanFactoryPostProcessor"></bean>-->
+
+<!--	<bean id="myUser" class="com.mti.demo.UserFactoryPostProcessor"></bean>-->
+
+
+<!--	<bean id="personPostProcessor" class="com.mti.demo.PersonPostProcessor"/>-->
+<!--	<bean id="personFactoryPostProcessor" class="com.mti.demo.PersonFactoryPostProcessor"/>-->
+<!--	<bean id="person" class="com.mti.demo.model.Person" init-method="init">-->
+<!--		<property name="name" value="hresh"/>-->
+<!--		<property name="age" value="18"/>-->
+<!--	</bean>-->
+
+
+
+
+
+</beans>
