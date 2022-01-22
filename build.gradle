@@ -80,11 +80,11 @@ configure(allprojects) { project ->
 		resolutionStrategy.cacheChangingModulesFor 0, "seconds"
 
 		// Consistent slf4j version (e.g. clashes between slf4j versions)
-		resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-			if (details.requested.group == "org.slf4j") {
-				details.useVersion slf4jVersion
-			}
-		}
+//		resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+//			if (details.requested.group == "org.slf4j") {
+//				details.useVersion slf4jVersion
+//			}
+//		}
 	}
 
 	def commonCompilerArgs =
@@ -175,26 +175,26 @@ configure(allprojects) { project ->
 		checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:0.0.7")
 	}
 
-	ext.javadocLinks = [
-		"https://docs.oracle.com/javase/8/docs/api/",
-		"https://docs.oracle.com/javaee/7/api/",
-		"https://docs.oracle.com/cd/E13222_01/wls/docs90/javadocs/",  // CommonJ
-		"https://www.ibm.com/support/knowledgecenter/SS7JFU_8.5.5/com.ibm.websphere.javadoc.doc/web/apidocs/",
-		"https://glassfish.java.net/nonav/docs/v3/api/",
-		"https://docs.jboss.org/jbossas/javadoc/4.0.5/connector/",
-		"https://docs.jboss.org/jbossas/javadoc/7.1.2.Final/",
-		"https://tiles.apache.org/tiles-request/apidocs/",
-		"https://tiles.apache.org/framework/apidocs/",
-		"https://www.eclipse.org/aspectj/doc/released/aspectj5rt-api/",
-		"https://www.ehcache.org/apidocs/2.10.4/",
-		"https://www.quartz-scheduler.org/api/2.3.0/",
-		"https://fasterxml.github.io/jackson-core/javadoc/2.9/",
-		"https://fasterxml.github.io/jackson-databind/javadoc/2.9/",
-		"https://fasterxml.github.io/jackson-dataformat-xml/javadoc/2.9/",
-		"https://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/",
-		"https://junit.org/junit4/javadoc/4.12/",
-		"https://junit.org/junit5/docs/${junit5Version}/api/"
-	] as String[]
+//	ext.javadocLinks = [
+//		"https://docs.oracle.com/javase/8/docs/api/",
+//		"https://docs.oracle.com/javaee/7/api/",
+//		"https://docs.oracle.com/cd/E13222_01/wls/docs90/javadocs/",  // CommonJ
+//		"https://www.ibm.com/support/knowledgecenter/SS7JFU_8.5.5/com.ibm.websphere.javadoc.doc/web/apidocs/",
+//		"https://glassfish.java.net/nonav/docs/v3/api/",
+//		"https://docs.jboss.org/jbossas/javadoc/4.0.5/connector/",
+//		"https://docs.jboss.org/jbossas/javadoc/7.1.2.Final/",
+//		"https://tiles.apache.org/tiles-request/apidocs/",
+//		"https://tiles.apache.org/framework/apidocs/",
+//		"https://www.eclipse.org/aspectj/doc/released/aspectj5rt-api/",
+//		"https://www.ehcache.org/apidocs/2.10.4/",
+//		"https://www.quartz-scheduler.org/api/2.3.0/",
+//		"https://fasterxml.github.io/jackson-core/javadoc/2.9/",
+//		"https://fasterxml.github.io/jackson-databind/javadoc/2.9/",
+//		"https://fasterxml.github.io/jackson-dataformat-xml/javadoc/2.9/",
+//		"https://hc.apache.org/httpcomponents-client-ga/httpclient/apidocs/",
+//		"https://junit.org/junit4/javadoc/4.12/",
+//		"https://junit.org/junit5/docs/${junit5Version}/api/"
+//	] as String[]
 }
 
 configure(subprojects - project(":spring-build-src")) { subproject ->
@@ -223,7 +223,7 @@ configure(subprojects - project(":spring-build-src")) { subproject ->
 		options.author = true
 		options.header = project.name
 		options.use = true
-		options.links(project.ext.javadocLinks)
+//		options.links(project.ext.javadocLinks)
 		options.addStringOption("Xdoclint:none", "-quiet")
 
 		// Suppress warnings due to cross-module @see and @link references.

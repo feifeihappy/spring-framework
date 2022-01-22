@@ -32,7 +32,7 @@ task api(type: Javadoc) {
 	options.overview = "src/docs/api/overview.html"
 	options.stylesheetFile = file("src/docs/api/stylesheet.css")
 	options.splitIndex = true
-	options.links(project.ext.javadocLinks)
+//	options.links(project.ext.javadocLinks)
 	options.addStringOption('Xdoclint:none', '-quiet')
 
 	source subprojects.collect { project ->
@@ -75,9 +75,9 @@ dokka {
 	externalDocumentationLink {
 		url = new URL("https://projectreactor.io/docs/core/release/api/")
 	}
-	externalDocumentationLink {
-		url = new URL("https://www.reactive-streams.org/reactive-streams-1.0.1-javadoc/")
-	}
+//	externalDocumentationLink {
+////		url = new URL("https://www.reactive-streams.org/reactive-streams-1.0.1-javadoc/")
+//	}
 }
 
 asciidoctor {
