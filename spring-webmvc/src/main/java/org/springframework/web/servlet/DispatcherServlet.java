@@ -940,6 +940,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		}
 
 		try {
+			//真正处理 请求转发的方法
 			doDispatch(request, response);
 		}
 		finally {
@@ -1011,7 +1012,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			try {
 				processedRequest = checkMultipart(request);
 				multipartRequestParsed = (processedRequest != request);
-
+				//根据 request 查找对应的 Handler
 				// Determine handler for the current request.
 				mappedHandler = getHandler(processedRequest);
 				if (mappedHandler == null) {
