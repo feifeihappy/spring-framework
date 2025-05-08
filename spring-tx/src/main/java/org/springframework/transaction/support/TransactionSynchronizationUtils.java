@@ -130,6 +130,7 @@ public abstract class TransactionSynchronizationUtils {
 	 */
 	public static void invokeAfterCommit(@Nullable List<TransactionSynchronization> synchronizations) {
 		if (synchronizations != null) {
+//			遍历注册者，回调。
 			for (TransactionSynchronization synchronization : synchronizations) {
 				synchronization.afterCommit();
 			}

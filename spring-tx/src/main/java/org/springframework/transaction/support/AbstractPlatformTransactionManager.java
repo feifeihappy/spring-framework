@@ -784,6 +784,7 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 			// Trigger afterCommit callbacks, with an exception thrown there
 			// propagated to callers but the transaction still considered as committed.
 			try {
+				// 提交事务后，回调通知，遍历注册者，回调。
 				triggerAfterCommit(status);
 			}
 			finally {

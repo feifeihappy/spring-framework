@@ -81,6 +81,7 @@ public abstract class TransactionSynchronizationManager {
 	private static final ThreadLocal<Map<Object, Object>> resources =
 			new NamedThreadLocal<>("Transactional resources");
 
+//	遍历注册者，回调。
 	private static final ThreadLocal<Set<TransactionSynchronization>> synchronizations =
 			new NamedThreadLocal<>("Transaction synchronizations");
 
@@ -287,6 +288,8 @@ public abstract class TransactionSynchronizationManager {
 	 * @param synchronization the synchronization object to register
 	 * @throws IllegalStateException if transaction synchronization is not active
 	 * @see org.springframework.core.Ordered
+	 *
+	 * 采用观察者模式： 注册回调后执行方法
 	 */
 	public static void registerSynchronization(TransactionSynchronization synchronization)
 			throws IllegalStateException {
@@ -307,6 +310,7 @@ public abstract class TransactionSynchronizationManager {
 	 * @see TransactionSynchronization
 	 */
 	public static List<TransactionSynchronization> getSynchronizations() throws IllegalStateException {
+//		拿到注册者
 		Set<TransactionSynchronization> synchs = synchronizations.get();
 		if (synchs == null) {
 			throw new IllegalStateException("Transaction synchronization is not active");
