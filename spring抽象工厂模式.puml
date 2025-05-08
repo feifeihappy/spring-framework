@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/class-diagram
+'因为 Java 与咖啡之间的联系，
+'所以咖啡的原材料咖啡豆（Java Bean）
+'就自然而然地成为了 Spring 中代
+'表一种基本单元的名称。
+'Spring源码中的抽象工厂模式
+'todo https://blog.csdn.net/zhouwenxiamg/article/details/138059163
+
+interface BeanFactory {
+    +getBean()
+}
+
+class DefaultListableBeanFactory{
+
+}
+
+@enduml
