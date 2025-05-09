@@ -8,11 +8,41 @@
 'todo https://blog.csdn.net/zhouwenxiamg/article/details/138059163
 
 interface BeanFactory {
-    +getBean()
+    + Object getBean()
 }
 
-class DefaultListableBeanFactory{
-
+interface ListableBeanFactory extends BeanFactory {
+    + Object createBean()
 }
+interface HierarchicalBeanFactory extends BeanFactory {
+    + Object createBean()
+}
+
+interface ConfigurableBeanFactory extends HierarchicalBeanFactory {
+    + Object createBean()
+}
+
+interface AbstractBeanFactory implements ConfigurableBeanFactory {
+    + Object createBean()
+}
+
+
+
+interface ApplicationContext extends ListableBeanFactory{
+    + Object getBean()
+}
+
+interface ConfigurableListableBeanFactory extends ListableBeanFactory{
++ Object createBean()
+}
+
+class DefaultListableBeanFactory implements ConfigurableListableBeanFactory {
++ Object createBean()
+}
+
+
+
+
 
 @enduml
+

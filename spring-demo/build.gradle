@@ -12,8 +12,11 @@ repositories {
 }
 
 dependencies {
-    api(project(":spring-context"))
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile(project(":spring-beans"))
+    compile(project(":spring-core"))
+    compile(project(":spring-tx"))
+    optional(project(":spring-context"))
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
