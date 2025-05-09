@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/class-diagram
+' todo 未完全理解
+interface ApplicationContext extends ApplicationEventPublisher{
+}
+
+abstract class ApplicationEvent {
+}
+note left: 被观察者
+
+
+interface ApplicationListener<E extends ApplicationEvent>{
+onApplicationEvent{}
+}
+note left: 具体观察者
+interface ApplicationEventPublisher{
+}
+note left: 通知
+@enduml
