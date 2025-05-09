@@ -5,25 +5,32 @@
 '就自然而然地成为了 Spring 中代
 '表一种基本单元的名称。
 'Spring源码中的抽象工厂模式
-'todo https://blog.csdn.net/zhouwenxiamg/article/details/138059163
+'参考： https://blog.csdn.net/zhouwenxiamg/article/details/138059163
 
 interface BeanFactory {
     + Object getBean()
 }
 
 interface ListableBeanFactory extends BeanFactory {
-    + Object createBean()
+    + Object getBean()
 }
 interface HierarchicalBeanFactory extends BeanFactory {
-    + Object createBean()
+    + Object getBean()
 }
 
 interface ConfigurableBeanFactory extends HierarchicalBeanFactory {
-    + Object createBean()
+    + Object getBean()
 }
 
-interface AbstractBeanFactory implements ConfigurableBeanFactory {
-    + Object createBean()
+abstract AbstractBeanFactory extends FactoryBeanRegistrySupport implements ConfigurableBeanFactory {
+    + Object getBean()
+   # T doGetBean()
+   #abstract createBean()
+}
+
+abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory{
+#Object createBean()
+# Object doCreateBean()
 }
 
 
@@ -33,16 +40,35 @@ interface ApplicationContext extends ListableBeanFactory{
 }
 
 interface ConfigurableListableBeanFactory extends ListableBeanFactory{
-+ Object createBean()
++ Object getBean()
 }
 
 class DefaultListableBeanFactory implements ConfigurableListableBeanFactory {
-+ Object createBean()
++ Object getBean()
 }
 
 
+interface SingletonBeanRegistry{
++Object getSingleton()
+}
 
+class DefaultSingletonBeanRegistry implements SingletonBeanRegistry{
++Object getSingleton()
+#addSingletonFactory
+# Object getSingleton
+# void addSingleton
+}
+note right of DefaultSingletonBeanRegistry
+  	private final Map<String, Object>
+  	singletonObjects = new ConcurrentHashMap<>(256);
+  	private final Map<String, ObjectFactory<?>>
+  	singletonFactories = new HashMap<>(16);
+  	private final Map<String, Object>
+  	earlySingletonObjects = new HashMap<>(16);
+endnote
 
+abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry{
+}
 
 @enduml
 
