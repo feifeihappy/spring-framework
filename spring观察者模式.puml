@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+
+title spring 事件驱动,采用观察者模式
 'spring 入口
 'org.springframework.context.support.AbstractApplicationContext.refresh
 
@@ -20,7 +22,16 @@ abstract class ApplicationContextEvent extends ApplicationEvent{
 class ContextRefreshedEvent extends ApplicationContextEvent{
 
 }
+class ContextClosedEvent extends ApplicationContextEvent{
 
+}
+
+class ContextStartedEvent extends ApplicationContextEvent{
+
+}
+class ContextStoppedEvent extends ApplicationContextEvent{
+
+}
 
 '具体主题（Concrete Subject）：具体主题是主题的具体实现类。
 '它维护着观察者列表，并在状态发生改变时通知观察者。
@@ -49,12 +60,21 @@ onApplicationEvent()
 }
 note left: 具体观察者
 
-abstract class AbstractApplicationContext{
+abstract class AbstractApplicationContext implements ConfigurableApplicationContext{
 refresh()
 finishRefresh()
 publishEvent()
 }
+interface ConfigurableApplicationContext extends ApplicationContext{
+publishEvent()
+}
+interface ApplicationContext implements ApplicationEventPublisher{
+publishEvent()
+}
 
+interface ApplicationEventPublisher {
+publishEvent()
+}
 
 AbstractApplicationContext -->SimpleApplicationEventMulticaster:发布
 SimpleApplicationEventMulticaster -->ContextRefreshListener:通知
