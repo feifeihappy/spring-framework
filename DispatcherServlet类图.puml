@@ -1,0 +1,36 @@
+@startuml
+
+'!theme plain
+top to bottom direction
+'skinparam linetype ortho
+
+interface ApplicationContextAware
+interface Aware
+class DispatcherServlet
+interface EnvironmentAware
+interface EnvironmentCapable
+class FrameworkServlet
+class GenericServlet
+class HttpServlet
+class HttpServletBean
+interface Serializable
+interface Servlet
+interface ServletConfig
+annotation SuppressWarnings
+
+ApplicationContextAware  -[#008200,plain]-^  Aware
+DispatcherServlet        -[#000082,plain]-^  FrameworkServlet
+DispatcherServlet        -[#999900,dotted]-  SuppressWarnings
+EnvironmentAware         -[#008200,plain]-^  Aware
+FrameworkServlet         -[#008200,dashed]-^  ApplicationContextAware
+FrameworkServlet         -[#000082,plain]-^  HttpServletBean
+FrameworkServlet         -[#999900,dotted]-  SuppressWarnings
+GenericServlet           -[#008200,dashed]-^  Serializable
+GenericServlet           -[#008200,dashed]-^  Servlet
+GenericServlet           -[#008200,dashed]-^  ServletConfig
+HttpServlet              -[#000082,plain]-^  GenericServlet
+HttpServletBean          -[#008200,dashed]-^  EnvironmentAware
+HttpServletBean          -[#008200,dashed]-^  EnvironmentCapable
+HttpServletBean          -[#000082,plain]-^  HttpServlet
+HttpServletBean          -[#999900,dotted]-  SuppressWarnings
+@enduml

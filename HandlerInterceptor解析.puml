@@ -1,0 +1,36 @@
+@startuml
+
+'!theme plain
+'top to bottom direction
+'skinparam linetype ortho
+
+interface HandlerInterceptor  {
+  + preHandle(): boolean
+  + afterCompletion(): void
+  + postHandle(): void
+}
+
+interface AsyncHandlerInterceptor  {
+  + afterConcurrentHandlingStarted(): void
+}
+
+abstract class HandlerInterceptorAdapter {
+  + preHandle(): boolean
+  + postHandle(): void
+  + afterCompletion(): void
+  + afterConcurrentHandlingStarted(): void
+}
+
+class HandlerExecutionChain{
+  - List<HandlerInterceptor> interceptorList;
+
+  + addInterceptor(): void
+  + applyPreHandle(): boolean
+}
+
+class DispatcherServlet extends FrameworkServlet{
+}
+
+AsyncHandlerInterceptor    -->  HandlerInterceptor
+HandlerInterceptorAdapter  -->  AsyncHandlerInterceptor
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor   user
+participant HttpServlet
+participant FrameworkServlet
+participant DispatcherServlet
+participant HandlerExecutionChain
+participant HandlerInterceptorAdapter
+
+user -> HttpServlet : GET /index.html
+note right
+接收请求
+end note
+HttpServlet -> FrameworkServlet : doGet()
+note right
+重写doGet()方法
+end note
+FrameworkServlet -> FrameworkServlet : processRequest()
+FrameworkServlet -> DispatcherServlet : doService()
+DispatcherServlet -> DispatcherServlet : doDispatch()
+DispatcherServlet -> HandlerExecutionChain : applyPreHandle()
+HandlerExecutionChain -> HandlerInterceptorAdapter : preHandle()
+note right
+1、方法原注释：before HandlerAdapter invokes the handler
+2、所谓：预处理方法,执行业务逻辑前调用。
+3、可写子类，实现该方法，亦为拦截器。
+end note
+
+
+@enduml
