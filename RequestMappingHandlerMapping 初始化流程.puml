@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title RequestMappingHandlerMapping 初始化流程
+
+autonumber
+autoactivate on
+actor "spring-webmvc" as webmvc
+
+participant DispatcherServlet as dispatcher
+participant AbstractHandlerMethodMapping as AHandlerMapping
+participant RequestMappingHandlerMapping as HandlerMapping
+webmvc -> dispatcher: initHandlerMappings
+dispatcher -> dispatcher: getDefaultStrategies
+
+note right
+1.实例化：RequestMappingHandlerMapping
+2.获取容器 List<HandlerMapping> handlerMappings;
+3.祖宗类AbstractHandlerMethodMapping 实现 afterPropertiesSet (InitializingBean)
+4.初始化 RequestMappingHandlerMapping 时候调用 祖宗类的afterPropertiesSet()
+end note
+
+dispatcher --> AHandlerMapping: afterPropertiesSet
+AHandlerMapping -> AHandlerMapping: initHandlerMethods
+
+note right
+1.获取并遍历spring 所有bean
+end note
+AHandlerMapping -> AHandlerMapping: processCandidateBean
+AHandlerMapping -> HandlerMapping: isHandler
+
+note right
+1.是否包含 @Controller/@RequestMapping
+end note
+AHandlerMapping -> AHandlerMapping: detectHandlerMethods
+note right
+1.对包含 @Controller/@RequestMapping 的类进行处理
+2.将类方法及方法上url 映射成 map
+end note
+AHandlerMapping -> AHandlerMapping: registerHandlerMethod
+AHandlerMapping -> AHandlerMapping: register
+note right
+1.将所有方法映射关系保存在MultiValueMap<String, T> urlLookup
+end note
+
+@enduml
