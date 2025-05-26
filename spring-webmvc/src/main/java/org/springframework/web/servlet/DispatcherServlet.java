@@ -500,6 +500,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * <p>May be overridden in subclasses in order to initialize further strategy objects.
 	 */
 	protected void initStrategies(ApplicationContext context) {
+//		SpringMVC的九大组件给初始化
 		initMultipartResolver(context);
 		initLocaleResolver(context);
 		initThemeResolver(context);

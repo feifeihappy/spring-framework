@@ -7,8 +7,8 @@
 		<property name="name" value="zhangsan"/>
 	</bean>
 
-	<bean id="demoPublisher" class="com.zpf.ioc.desigon.DemoPublisher">
-		<property name="applicationContext" value="zhangsan"/>
-	</bean>
+<!--	<bean id="demoPublisher" class="com.zpf.ioc.desigon.DemoPublisher">-->
+<!--		<property name="applicationContext" value="zhangsan"/>-->
+<!--	</bean>-->
 
 </beans>

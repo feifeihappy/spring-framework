@@ -1,11 +1,3 @@
-### springmvc 原理
-1. DispatcherServlet初始化的时机？
-* spring 入口路径
-[MySpringIOC.java](spring-test-demo%2Fsrc%2Fmain%2Fjava%2Fcom%2Fzpf%2Fioc%2FMySpringIOC.java)
-
-
-- DispatcherServlet初始化流程
-```plantuml
 @startuml
 'https://plantuml.com/sequence-diagram
 
@@ -53,10 +45,3 @@ end note
 
 
 @enduml
-
-```
-
-
-参考：
-
-[深入了解SpringMVC源码解析 ](https://www.cnblogs.com/javammc/p/15612780.html)
