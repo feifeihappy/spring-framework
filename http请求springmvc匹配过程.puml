@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title http请求springmvc匹配过程
+
+autonumber
+actor   user
+participant HttpServlet
+participant FrameworkServlet
+participant DispatcherServlet
+participant HandlerMapping
+participant AbstractHandlerMapping
+participant AbstractHandlerMethodMapping
+
+user -> HttpServlet : GET /index.html
+note right
+接收请求
+end note
+HttpServlet -> FrameworkServlet : doGet()
+note right
+重写doGet()方法
+end note
+FrameworkServlet -> FrameworkServlet : processRequest()
+FrameworkServlet -> DispatcherServlet : doService()
+DispatcherServlet -> DispatcherServlet : doDispatch()
+DispatcherServlet -> HandlerMapping : getHandler()
+HandlerMapping -> AbstractHandlerMapping : getHandler()
+AbstractHandlerMapping -> AbstractHandlerMapping : getHandlerInternal()
+AbstractHandlerMapping -> AbstractHandlerMethodMapping : getHandlerInternal()
+AbstractHandlerMethodMapping -> AbstractHandlerMethodMapping : lookupHandlerMethod()
+AbstractHandlerMethodMapping -> AbstractHandlerMethodMapping : getMappingsByUrl()
+note left
+1、private final MultiValueMap<String, T> urlLookup = new LinkedMultiValueMap<>();
+2、return this.urlLookup.get(urlPath);
+3、返回匹配到的方法
+end note
+
+
+@enduml
