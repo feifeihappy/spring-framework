@@ -436,6 +436,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 			public T doInStatement(Statement stmt) throws SQLException {
 				ResultSet rs = null;
 				try {
+					//根据链接类型，执行 sql
 					rs = stmt.executeQuery(sql);
 					return rse.extractData(rs);
 				}

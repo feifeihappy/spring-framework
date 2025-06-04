@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/class-diagram
+class TestJdbctemplate{
+test()
+}
+
+note left : 客户端
+
+interface StatementCallback{
+doInStatement()
+}
+note left :  命令
+
+class JdbcTemplate{
+query()
+update()
+execute()
+}
+note left : 接收者｜调用者
+
+class QueryStatementCallback implements StatementCallback{
+doInStatement()
+}
+note left :  具体命令
+class UpdateStatementCallback implements StatementCallback{
+doInStatement()
+}
+note left :  具体命令
+
+
+
+
+
+
+TestJdbctemplate --|> JdbcTemplate :使用
+JdbcTemplate --|> StatementCallback :使用
+QueryStatementCallback --|> JdbcTemplate :使用
+UpdateStatementCallback --|> JdbcTemplate :使用
+
+@enduml
