@@ -8,6 +8,7 @@ participant FrameworkServlet
 participant DispatcherServlet
 participant HandlerExecutionChain
 participant HandlerInterceptorAdapter
+participant MyInterceptor
 
 user -> HttpServlet : GET /index.html
 note right
@@ -27,6 +28,9 @@ note right
 2、所谓：预处理方法,执行业务逻辑前调用。
 3、可写子类，实现该方法，亦为拦截器。
 end note
-
-
+HandlerInterceptorAdapter -> MyInterceptor : preHandle()
+note right
+1.重写了父类HandlerInterceptorAdapter.preHandle 方法
+2.执行拦截器逻辑
+end note
 @enduml
